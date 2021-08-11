@@ -1,0 +1,18 @@
+---
+- name: Playbook to Download jmx
+  hosts: webserver   
+  tasks:
+  - name: Create a Directory /opt/Downloads
+    become: yes
+    file:
+      path: /opt/Downloads
+      state: directory
+      mode: 0755
+
+  - name: Download Artifact from Artifactory
+    become: yes
+    get_url:
+      url: https://gitlab.cloudifyops.com/clops-poc/petclinic_non-microservice/-/raw/master/HTTPRequest1.jmx
+      dest: /opt/Downloads/HTTPRequest1.jmx
+      mode: 0755
+      force: yes
