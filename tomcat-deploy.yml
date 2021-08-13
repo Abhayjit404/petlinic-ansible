@@ -4,6 +4,6 @@
     - name: copying file with playbook
       become: true 
       copy:
-        src: /var/lib/jenkins/workspace/testing/target/petclinic.war
+        src: /var/lib/jenkins/workspace/petclinic-nonmicro/target/petclinic.war
         dest: /opt/apache-tomcat-8.5.69/webapps
         remote_src: yes
