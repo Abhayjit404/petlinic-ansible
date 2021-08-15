@@ -1,9 +1,27 @@
-- name: Ansible Tomcat Deploy
-  hosts: webserver
+---
+- name: Playbook to Download and Deploy Artifact in tomcat
+  hosts: webserver    
   tasks:
-    - name: copying file with playbook
-      become: true 
-      copy:
-        src: /var/lib/jenkins/workspace/petclinic-nonmicro/target/petclinic.war
-        dest: /opt/apache-tomcat-8.5.69/webapps
-        remote_src: yes
+  - name: Create a Directory /opt/Downloads
+    become: yes
+    file:
+      path: /opt/Downloads
+      state: directory
+      mode: 0755
+
+  - name: Download Artifact from Artifactory
+    become: yes
+    get_url:
+      url: http://34.207.119.9:8081/repository/petclinic-java/
+      url_password: admin123
+      url_username: admin
+      dest: /opt/Downloads/petclinic.war
+      mode: 0755
+      
+  - name: Copy File to webapp folder
+    become: yes
+    copy:
+      src: /opt/Downloads/petclinic.war
+      dest: /opt/apache-tomcat-8.5.69/webapps
+      remote_src: yes
+      mode: 0755
