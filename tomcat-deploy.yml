@@ -19,7 +19,7 @@
       mode: 0755
       
   - name: Renaming  
-      command: /opt/Downloads/spring-framework-petclinic-5.3.8.war /opt/Downloads/petclinic.war
+    command: /opt/Downloads/spring-framework-petclinic-5.3.8.war /opt/Downloads/petclinic.war
       
   - name: Copy File to webapp folder
     become: yes
