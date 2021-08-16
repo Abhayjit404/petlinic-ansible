@@ -21,8 +21,7 @@
   - name: Copy File to webapp folder
     become: yes
     copy:
-      command: mv /opt/Downloads/spring-framework-petclinic-5.3.8.war /opt/Downloads/petclinic.war
-      src: /opt/Downloads/petclinic.war
+      src: /opt/Downloads/spring-framework-petclinic-5.3.8.war
       dest: /opt/apache-tomcat-8.5.69/webapps
       remote_src: yes
       mode: 0755
