@@ -18,10 +18,13 @@
       dest: /opt/Downloads/spring-framework-petclinic-5.3.8.war
       mode: 0755
       
+  - name: Renaming  
+      command: /opt/Downloads/spring-framework-petclinic-5.3.8.war /opt/Downloads/petclinic.war
+      
   - name: Copy File to webapp folder
     become: yes
     copy:
-      src: /opt/Downloads/spring-framework-petclinic-5.3.8.war
+      src: /opt/Downloads/petclinic.war
       dest: /opt/apache-tomcat-8.5.69/webapps
       remote_src: yes
       mode: 0755
